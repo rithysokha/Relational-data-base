@@ -116,7 +116,7 @@ public class Faculty {
                 int officeNoo = scanner.nextInt();
                 scanner.nextLine();
                 facultyList.put(facultyId, new Faculty("Faculty of " + facultyNamee, deanNamee, officeNoo));
-                scanner.close();
+               
                  writeFile();
             }
         } catch (Exception e) {
@@ -137,7 +137,6 @@ public class Faculty {
             } else {
                 System.out.println("Faculty ID not found");
             }
-            scanner.close();
         } catch (Exception e) {
             System.out.println("Wrong input type");
         }
@@ -163,7 +162,7 @@ public class Faculty {
             } else {
                 System.out.println("Faculty ID not found");
             }
-            scanner.close();
+         
         } catch (Exception e) {
             System.out.println("Wrong input type");
         }
@@ -180,7 +179,7 @@ public class Faculty {
             } else {
                 System.out.println("Faculty ID not found");
             }
-            scanner.close();
+            
         } catch (Exception e) {
             System.out.println("Only number is allowed");
         }
