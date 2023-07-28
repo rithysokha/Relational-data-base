@@ -52,7 +52,9 @@ public class Faculty {
     }
 
     HashMap<Integer, Faculty> facultyList = new HashMap<>();
-
+    void displayLine(){
+        System.out.println("=================================================");
+    }
     // read file and input data to hashmap
     void readFile() {
         try {
@@ -100,6 +102,7 @@ public class Faculty {
     }
 
     void addNewFaculty() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter faculty ID: ");
@@ -125,6 +128,7 @@ public class Faculty {
     }
 
     void searchFacultybyID() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter faculty ID: ");
@@ -143,6 +147,7 @@ public class Faculty {
     }
 
     void updateAFaculty() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter faculty ID: ");
@@ -169,6 +174,7 @@ public class Faculty {
     }
 
     void deleteAFaculty() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter faculty ID: ");

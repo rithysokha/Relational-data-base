@@ -9,6 +9,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
     boolean exit = false;
     while(!exit){
+        department.displayLine();
         System.out.println("Choose an option: ");
         System.out.println("A. Add new department");
         System.out.println("B. Search department by ID");

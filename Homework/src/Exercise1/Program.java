@@ -7,6 +7,7 @@ public class Program {
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
         while (!exit) {
+            faculty.displayLine();
             System.out.println("A. Add a new faculty");
             System.out.println("B. Search a faculty by ID");
             System.out.println("C. Update a faculty");

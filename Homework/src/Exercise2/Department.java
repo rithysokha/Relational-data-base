@@ -63,6 +63,9 @@ public class Department {
 
     HashMap<Integer, Department> departmentList = new HashMap<>();
 
+    void displayLine(){
+        System.out.println("==================================================");
+    }
     // read file and input data to hashmap
     void readFile() {
         try {
@@ -112,6 +115,7 @@ public class Department {
     }
 
     void addNewDepartment() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter department ID: ");
@@ -140,6 +144,7 @@ public class Department {
     }
 
     void searchDepartmentByID() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter department ID");
@@ -160,6 +165,7 @@ public class Department {
     }
 
     void updateADepartmentByID() {
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter department ID you want to update: ");
@@ -187,6 +193,7 @@ public class Department {
         }
     }
     void deleteDepartmentByID(){
+        displayLine();
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter department ID you want to delete: ");
@@ -203,6 +210,7 @@ public class Department {
         }
     }
     void deisplayDepartmentInFaculty(){
+        displayLine();
         readFile();
         try {
             Scanner scanner = new Scanner(System.in);
@@ -214,11 +222,6 @@ public class Department {
             for (int key : departmentList.keySet()) {
                 if (departmentList.get(key).getFacultyID() == facultyId) {
                     System.out.println(facultyId + "\t" + key + "\t" + departmentList.get(key).getDeptName() + "\t" + departmentList.get(key).getHeadName() + "\t" + departmentList.get(key).getOfficeNo());
-                    // System.out.println("Department ID: " + key);
-                    // System.out.println("Department name: " + departmentList.get(key).getDeptName());
-                    // System.out.println("Department head name: " + departmentList.get(key).getHeadName());
-                    // System.out.println("Department office No: " + departmentList.get(key).getOfficeNo());
-                    // System.out.println("Faculty No: " + departmentList.get(key).getFacultyID());
                 }
             }
         } catch (Exception e) {
