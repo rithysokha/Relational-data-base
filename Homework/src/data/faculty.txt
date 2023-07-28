@@ -1,2 +1,8 @@
-1, Faculty of Lazy, Song Meysorng, 168
-2, Faculty of MLBB, Sen Sunneng, 9999
+1, Faculty of sonnnn, siii, 898
+2, Faculty of ITE, Ni, 90
+3, C Trav, Veha, 999
+100, Faculty of kjel, kjel2, 9
+5, Faculty of thy, thys, 89
+6, Faculty of Lazy, Mey sorng, 168
+7, Faculty of beer, sorng, 9999
+9, Faculty of uio, ufi, 90
