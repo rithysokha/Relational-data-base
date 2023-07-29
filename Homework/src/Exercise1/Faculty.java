@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Faculty {
     private int facultyID;
@@ -52,9 +51,11 @@ public class Faculty {
     }
 
     HashMap<Integer, Faculty> facultyList = new HashMap<>();
-    void displayLine(){
+
+    void displayLine() {
         System.out.println("=================================================");
     }
+
     // read file and input data to hashmap
     void readFile() {
         try {
@@ -101,93 +102,32 @@ public class Faculty {
         }
     }
 
-    void addNewFaculty() {
+    void addNewFaculty(int facultyID, String facultyName, String deanName, int officeNo) {
         displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter faculty ID: ");
-            int facultyId = scanner.nextInt();
-            scanner.nextLine();
-            if (facultyList.containsKey(facultyId)) {
-                System.out.println("Faculty ID already exists");
-            } else {
-                System.out.println("Enter faculty name: ");
-                String facultyNamee = scanner.nextLine();
-                System.out.println("Enter dean name: ");
-                String deanNamee = scanner.nextLine();
-                System.out.println("Enter office number: ");
-                int officeNoo = scanner.nextInt();
-                scanner.nextLine();
-                facultyList.put(facultyId, new Faculty("Faculty of " + facultyNamee, deanNamee, officeNoo));
-               
-                 writeFile();
-            }
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
-        }
+            facultyList.put(facultyID, new Faculty("Faculty of " + facultyName, deanName, officeNo));
+            writeFile();
     }
 
-    void searchFacultybyID() {
+    void searchFacultybyID(int facultyID) {
         displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter faculty ID: ");
-            int facultyId = scanner.nextInt();
-            if (facultyList.containsKey(facultyId)) {
-                System.out.println("Faculty ID: " + facultyId);
-                System.out.println("Faculty Name: " + facultyList.get(facultyId).getFacultyName());
-                System.out.println("Dean Name: " + facultyList.get(facultyId).getDeanName());
-                System.out.println("Office No: " + facultyList.get(facultyId).getOfficeNo());
+            if (facultyList.containsKey(facultyID)) {
+                System.out.println("Faculty ID: " + facultyID);
+                System.out.println("Faculty Name: " + facultyList.get(facultyID).getFacultyName());
+                System.out.println("Dean Name: " + facultyList.get(facultyID).getDeanName());
+                System.out.println("Office No: " + facultyList.get(facultyID).getOfficeNo());
             } else {
                 System.out.println("Faculty ID not found");
             }
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
-        }
     }
 
-    void updateAFaculty() {
+    void deleteAFaculty(int facultyID) {
         displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter faculty ID: ");
-            int facultyId = scanner.nextInt();
-            scanner.nextLine();
-            if (facultyList.containsKey(facultyId)) {
-                System.out.println("Enter new faculty name: ");
-                String newFacultyName = scanner.nextLine();
-                System.out.println("Enter new dean name: ");
-                String newDeanName = scanner.nextLine();
-                System.out.println("Enter new office number: ");
-                int newOfficeNo = scanner.nextInt();
-                facultyList.get(facultyId).setFacultyName("Faculty of" + newFacultyName);
-                facultyList.get(facultyId).setDeanName(newDeanName);
-                facultyList.get(facultyId).setOfficeNo(newOfficeNo);
+       
+            if (facultyList.containsKey(facultyID)) {
+                facultyList.remove(facultyID);
                 writeFile();
             } else {
                 System.out.println("Faculty ID not found");
             }
-         
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
-        }
-    }
-
-    void deleteAFaculty() {
-        displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter faculty ID: ");
-            int facultyId = scanner.nextInt();
-            if (facultyList.containsKey(facultyId)) {
-                facultyList.remove(facultyId);
-                writeFile();
-            } else {
-                System.out.println("Faculty ID not found");
-            }
-            
-        } catch (Exception e) {
-            System.out.println("Only number is allowed");
-        }
     }
 }

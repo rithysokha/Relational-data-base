@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Department {
     private int deptID;
@@ -63,9 +62,10 @@ public class Department {
 
     HashMap<Integer, Department> departmentList = new HashMap<>();
 
-    void displayLine(){
+    void displayLine() {
         System.out.println("==================================================");
     }
+
     // read file and input data to hashmap
     void readFile() {
         try {
@@ -114,118 +114,51 @@ public class Department {
         }
     }
 
-    void addNewDepartment() {
+    // this method is used to add new department and update department
+    // this method is reusable with update department by ID
+    void addNewDepartment(int deptID, String deptName, String headName, int officeNo, int facultyID) {
         displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter department ID: ");
-            int deptartmentID = scanner.nextInt();
-            scanner.nextLine();
+        departmentList.put(deptID, new Department(deptName, headName, officeNo, facultyID));
+        writeFile();
+    }
 
-            if (departmentList.containsKey(deptartmentID)) {
-                System.out.println("Department ID already exist.");
-            } else {
-                System.out.println("Enter department name: ");
-                String departmentName = scanner.nextLine();
-                System.out.println("Enter department head name: ");
-                String departmentHead = scanner.nextLine();
-                System.out.println("Enter department office No: ");
-                int officeNoo = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter faculty id: ");
-                int facultyId = scanner.nextInt();
-                scanner.nextLine();
-                departmentList.put(deptartmentID, new Department(departmentName, departmentHead, officeNoo, facultyId));
-            }
+    // this method is used to search department by ID
+    void searchDepartmentByID(int deptID) {
+        displayLine();
+        if (departmentList.containsKey(deptID)) {
+            System.out.println("Department ID: " + deptID);
+            System.out.println("Department name: " + departmentList.get(deptID).getDeptName());
+            System.out.println("Department head name: " + departmentList.get(deptID).getHeadName());
+            System.out.println("Department office No: " + departmentList.get(deptID).getOfficeNo());
+            System.out.println("Faculty No: " + departmentList.get(deptID).getFacultyID());
+        } else {
+            System.out.println("Invalid ID");
+        }
+    }
+
+    // this method is used to delete department by ID
+    void deleteDepartmentByID(int deptID) {
+        displayLine();
+        if (departmentList.containsKey(deptID)) {
+            departmentList.remove(deptID);
             writeFile();
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
+        } else {
+            System.out.println("Invalid department ID.");
         }
     }
 
-    void searchDepartmentByID() {
-        displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter department ID");
-            int departmentId = scanner.nextInt();
-            scanner.nextLine();
-            if (departmentList.containsKey(departmentId)) {
-                System.out.println("Department ID: " + departmentId);
-                System.out.println("Department name: " + departmentList.get(departmentId).getDeptName());
-                System.out.println("Department head name: " + departmentList.get(departmentId).getHeadName());
-                System.out.println("Department office No: " + departmentList.get(departmentId).getOfficeNo());
-                System.out.println("Faculty No: " + departmentList.get(departmentId).getFacultyID());
-            } else {
-                System.out.println("Invalid ID");
-            }
-        } catch (Exception e) {
-            System.out.println("Only number is allowed");
-        }
-    }
-
-    void updateADepartmentByID() {
-        displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter department ID you want to update: ");
-            int departmetnId = scanner.nextInt();
-            scanner.nextLine();
-            if (departmentList.containsKey(departmetnId)) {
-                System.out.println("Enter new department name: ");
-                String departmentName = scanner.nextLine();
-                System.out.println("Enter new department head name: ");
-                String departmentHead = scanner.nextLine();
-                System.out.println("Enter new department office No: ");
-                int officeNoo = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter new faculty ID: ");
-                int facultyId = scanner.nextInt();
-                scanner.nextLine();
-                departmentList.put(departmetnId, new Department(departmentName, departmentHead, officeNoo, facultyId));
-                writeFile();
-            }else{
-                System.out.println("Invalid department ID.");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
-        }
-    }
-    void deleteDepartmentByID(){
-        displayLine();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter department ID you want to delete: ");
-            int departmentId = scanner.nextInt();
-            scanner.nextLine();
-            if (departmentList.containsKey(departmentId)) {
-                departmentList.remove(departmentId);
-                writeFile();
-            }else{
-                System.out.println("Invalid department ID.");
-            }
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
-        }
-    }
-    void deisplayDepartmentInFaculty(){
+    // this method is used to display department in faculty
+    void deisplayDepartmentInFaculty(int facultyID) {
         displayLine();
         readFile();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter faculty ID: ");
-            int facultyId = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Department in faculty: ");
-            System.out.println("Faculty ID" +"\t" + "Department ID" + "\t" + "Department name" + "\t" + "Department head name" + "\t" + "Department office No"	);
-            for (int key : departmentList.keySet()) {
-                if (departmentList.get(key).getFacultyID() == facultyId) {
-                    System.out.println(facultyId + "\t" + key + "\t" + departmentList.get(key).getDeptName() + "\t" + departmentList.get(key).getHeadName() + "\t" + departmentList.get(key).getOfficeNo());
-                }
+        System.out.println("Department in faculty: ");
+        System.out.println("Faculty ID" + "\t" + "Department ID" + "\t" + "Department name" + "\t"
+                + "Department head name" + "\t" + "Department office No");
+        for (int key : departmentList.keySet()) {
+            if (departmentList.get(key).getFacultyID() == facultyID) {
+                System.out.println(facultyID + "\t" + key + "\t" + departmentList.get(key).getDeptName() + "\t"
+                        + departmentList.get(key).getHeadName() + "\t" + departmentList.get(key).getOfficeNo());
             }
-        } catch (Exception e) {
-            System.out.println("Wrong input type");
         }
     }
 }
