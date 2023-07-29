@@ -17,6 +17,7 @@ public class Student {
     private int studentYearOfStudy;
     private int studentGeneration;
     private String studentDegree;
+    private int userID;
 
     public int getStudentID() {
         return studentID;
@@ -89,9 +90,14 @@ public class Student {
     public void setStudentYearOfStudy(int studentYearOfStudy) {
         this.studentYearOfStudy = studentYearOfStudy;
     }
+    public int getUserID() {
+        return userID;
+    }public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public Student(String studentName, String studentGender, String studentDOB, int studentPhoneNo,
-            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree) {
+            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
         this.studentName = studentName;
         this.studentGender = studentGender;
         this.studentDOB = studentDOB;
@@ -100,6 +106,7 @@ public class Student {
         this.studentYearOfStudy = studentYearOfStudy;
         this.studentGeneration = studentGeneration;
         this.studentDegree = studentDegree;
+        this.userID = userID;
     }
 
     HashMap<Integer, Student> studentList = new HashMap<>();
@@ -126,16 +133,18 @@ public class Student {
                 String studentYearOfStudyStr = keyValue[6];
                 String studentGenerationStr = keyValue[7];
                 String studentDegreeStr = keyValue[8];
+                String userIDString = keyValue[9];
                 // convert data type
                 Integer studentIDInt = Integer.parseInt(studentIDStr);
                 int studentPhoneNoInt = Integer.parseInt(studentPhoneNoStr);
                 int studentYearOfStudyInt = Integer.parseInt(studentYearOfStudyStr);
                 int studentGenerationInt = Integer.parseInt(studentGenerationStr);
+                int userIDInt = Integer.parseInt(userIDString);
 
                 // Add the key-value pair to the HashMap.
                 studentList.put(studentIDInt, new Student(studentNameStr, studentGenderStr, studentDOBStr,
                         studentPhoneNoInt, studentAddressStr, studentYearOfStudyInt, studentGenerationInt,
-                        studentDegreeStr));
+                        studentDegreeStr, userIDInt));
             }
             // Close the file
             bufferedReader.close();
@@ -156,7 +165,7 @@ public class Student {
                         + studentList.get(key).getStudentGender() + ", " + studentList.get(key).getStudentDOB() + ", "
                         + studentList.get(key).getStudentPhoneNo() + ", " + studentList.get(key).getStudentAddress()
                         + ", " + studentList.get(key).getStudentYearOfStudy() + ", "
-                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree()
+                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree() + ", " + studentList.get(key).getUserID()
                         + "\n");
             }
             writer.close();
@@ -166,10 +175,10 @@ public class Student {
     }
     //this method is reusable with update student by ID
     void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, int studentPhoneNo,
-            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree) {
+            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
         displayLine();
         studentList.put(studentID, new Student(studentName, studentGender, studentDOB, studentPhoneNo, studentAddress,
-                studentYearOfStudy, studentGeneration, studentDegree));
+                studentYearOfStudy, studentGeneration, studentDegree, userID));
         writeFile();
     }
     void searchStudentbyID(int studentID){
@@ -183,6 +192,7 @@ public class Student {
             System.out.println("Student year of study: " + studentList.get(studentID).getStudentYearOfStudy());
             System.out.println("Student generation: " + studentList.get(studentID).getStudentGeneration());
             System.out.println("Student degree: " + studentList.get(studentID).getStudentDegree());
+            System.out.println("User ID: " + studentList.get(studentID).getUserID());
         }else{
             System.out.println("Student ID not found");
         }

@@ -10,7 +10,7 @@ public class Program {
         System.out.println("E. exit");
     }
     public static void main(String[] args) {
-        Student student = new Student("", "", "", 0, "", 0, 0, "");
+        Student student = new Student("", "", "", 0, "", 0, 0, "", 0);
         Program program = new Program();
         boolean exit = false;
         int studentID = 0;
@@ -53,7 +53,7 @@ public class Program {
                     scanner.nextLine();
                     System.out.println("Enter student degree: ");
                     studentDegree = scanner.nextLine();
-                    student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree);
+                    student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree, studentID+1000);
                     }else{
                         System.out.println("Student ID already exists.");
                     }
@@ -97,7 +97,7 @@ public class Program {
                     scanner.nextLine();
                     System.out.println("Enter student degree: ");
                     studentDegree = scanner.nextLine();
-                    student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree);
+                    student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree, studentID+1000);
                     }else{
                         System.out.println("Student ID does not exists.");
                     }
