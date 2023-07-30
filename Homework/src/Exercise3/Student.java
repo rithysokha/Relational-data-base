@@ -173,6 +173,7 @@ public class Student {
             System.out.println(e);
         }
     }
+   
     //this method is reusable with update student by ID
     void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, int studentPhoneNo,
             String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
@@ -206,5 +207,18 @@ public class Student {
             System.out.println("Student ID not found");
         }
     }
-
+    //for student enrolling progam
+     void writeFileToStudentDept() {
+        File file = new File("src\\data\\studentDept.txt");
+        try {
+            // write file back into account.txt
+            FileWriter writer = new FileWriter(file, true);
+            for (int key : studentList.keySet()) {
+                writer.write(key + ", " + 0+ ", " + 0 + "\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

@@ -53,6 +53,7 @@ public class Program {
                     scanner.nextLine();
                     System.out.println("Enter student degree: ");
                     studentDegree = scanner.nextLine();
+                    student.writeFileToStudentDept();
                     student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree, studentID+1000);
                     }else{
                         System.out.println("Student ID already exists.");
