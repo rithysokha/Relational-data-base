@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        StudentDepartment student = new StudentDepartment("", "", "", 0, "", 0, 0, "", 0);
+        StudentDepartment student = new StudentDepartment();
         student.readFileStudent();
         student.readFileStudentDept();
         Scanner scanner = new Scanner(System.in);

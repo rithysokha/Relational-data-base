@@ -37,6 +37,7 @@ public class Program {
                         teacherAddress = scanner.nextLine();
                         userID = teacherID;
                         teacher.addNewTeacher(teacherID, teacherName, teacherGender, teacherDOB, teacherPhoneNo, teacherAddress, userID);
+                        teacher.writeFileToTeacherCourse();
                     }else{
                         System.out.println("Teacher ID already exist!");
                     }
@@ -91,7 +92,10 @@ public class Program {
                     break;
                 case 'e', 'E':
                     try{
-                        System.out.println("this feature is not done yet");
+                        System.out.println("Enter teacher ID: ");
+                        teacherID = scanner.nextInt();
+                        scanner.nextLine();
+                        teacher.displayAllCourseToughByATeacher(teacherID);
                     }catch(Exception e){
                         System.out.println("Wrong input type");
                     }

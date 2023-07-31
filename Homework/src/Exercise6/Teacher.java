@@ -83,6 +83,8 @@ public class Teacher {
 
     HashMap<Integer, Teacher> teacherList = new HashMap<>();
     HashMap<Integer, int[]> teacherCourseList = new HashMap<>();
+    HashMap<Integer, String> courseList = new HashMap<>();
+    
 
     // read file and input data to hashmap
     void readFile() {
@@ -109,6 +111,28 @@ public class Teacher {
 
             }
             // Close the file
+            bufferedReader.close();
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    void readFileCourse() {
+        try {
+            // Creates a reader that is linked with the myFile.txt
+            FileReader reader = new FileReader("src\\data\\course.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] keyValue = line.split(", ");
+                String courseIDStr = keyValue[0];
+                String courseNameStr = keyValue[1];
+                // convert to data type
+                Integer courseIDInteger = Integer.parseInt(courseIDStr);
+                // Add the key-value pair to the HashMap.
+                courseList.put(courseIDInteger, courseNameStr);
+            }
+            // Close the file.
             bufferedReader.close();
             reader.close();
         } catch (Exception e) {
@@ -174,6 +198,32 @@ public class Teacher {
             System.out.println("Teacher ID does not exist!");
         }
         writeFile();
+    }
+    void displayAllCourseToughByATeacher(int teacherID) {
+        readFileCourse();
+        if(teacherList.containsKey(teacherID))
+        {System.out.println("Teacher ID: " + teacherID);
+        System.out.println("Teacher Name: " + teacherList.get(teacherID));
+        for (int index = 0; index <= 4; index++) {
+            if (teacherCourseList.get(teacherID)[index] != 0) {
+                System.out.println("Course ID: " + teacherCourseList.get(teacherID)[index]);
+                System.out.println("Course Name: " + courseList.get(teacherCourseList.get(teacherID)[index]));
+            }
+        }}else{System.out.println("Teacher ID not found.");}
+    }
+     //for teacher course assigning progam
+     void writeFileToTeacherCourse() {
+        File file = new File("src\\data\\teacherCourse.txt");
+        try {
+            // write file back into account.txt
+            FileWriter writer = new FileWriter(file, true);
+            for (int key : teacherList.keySet()) {
+                writer.write(key + ", " + 0 + ", " + 0 +  ", " + 0+ ", " + 0+ ", " + 0+ ", " + 0 +"\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }

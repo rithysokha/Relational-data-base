@@ -1,2 +1,0 @@
-1, ITE, Sovila, 1, 1
-2, Teed, Sokha, 1, 1

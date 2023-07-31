@@ -1,2 +1,0 @@
-1, thy, male, 13 june, 968325154, takhmau, 2023, 8, engineering, 1001
-2, sunneng, male, 18 march, 98708, phnom penh, 2023, 8, engineering, 1002

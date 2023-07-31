@@ -10,14 +10,6 @@ import java.util.HashMap;
 public class StudentDepartment {
     private int studentID;
     private String studentName;
-    private String studentGender;
-    private String studentDOB;
-    private int studentPhoneNo;
-    private String studentAddress;
-    private int studentYearOfStudy;
-    private int studentGeneration;
-    private String studentDegree;
-    private int userID;
     private int departmentID;
     private String departmentName;
 
@@ -37,70 +29,6 @@ public class StudentDepartment {
         this.studentName = studentName;
     }
 
-    public String getStudentDegree() {
-        return studentDegree;
-    }
-
-    public void setStudentDegree(String studentDegree) {
-        this.studentDegree = studentDegree;
-    }
-
-    public String getStudentDOB() {
-        return studentDOB;
-    }
-
-    public void setStudentDOB(String studentDOB) {
-        this.studentDOB = studentDOB;
-    }
-
-    public String getStudentGender() {
-        return studentGender;
-    }
-
-    public void setStudentGender(String studentGender) {
-        this.studentGender = studentGender;
-    }
-
-    public String getStudentAddress() {
-        return studentAddress;
-    }
-
-    public void setStudentAddress(String studentAddress) {
-        this.studentAddress = studentAddress;
-    }
-
-    public int getStudentPhoneNo() {
-        return studentPhoneNo;
-    }
-
-    public void setStudentPhoneNo(int studentPhoneNo) {
-        this.studentPhoneNo = studentPhoneNo;
-    }
-
-    public int getStudentGeneration() {
-        return studentGeneration;
-    }
-
-    public void setStudentGeneration(int studentGeneration) {
-        this.studentGeneration = studentGeneration;
-    }
-
-    public int getStudentYearOfStudy() {
-        return studentYearOfStudy;
-    }
-
-    public void setStudentYearOfStudy(int studentYearOfStudy) {
-        this.studentYearOfStudy = studentYearOfStudy;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public int getDepartmentID() {
         return departmentID;
     }
@@ -112,21 +40,7 @@ public class StudentDepartment {
     public String getDepartmentName() {
         return departmentName;
     }
-
-    public StudentDepartment(String studentName, String studentGender, String studentDOB, int studentPhoneNo,
-            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
-        this.studentName = studentName;
-        this.studentGender = studentGender;
-        this.studentDOB = studentDOB;
-        this.studentPhoneNo = studentPhoneNo;
-        this.studentAddress = studentAddress;
-        this.studentYearOfStudy = studentYearOfStudy;
-        this.studentGeneration = studentGeneration;
-        this.studentDegree = studentDegree;
-        this.userID = userID;
-    }
-
-    HashMap<Integer, StudentDepartment> studentList = new HashMap<>();
+    HashMap<Integer, String> studentList = new HashMap<>();
     HashMap<Integer, int[]> studentInDepartment = new HashMap<>();
     HashMap<Integer, String> department = new HashMap<>();
 
@@ -153,25 +67,10 @@ public class StudentDepartment {
                 String[] keyValue = line.split(", ");
                 String studentIDStr = keyValue[0];
                 String studentNameStr = keyValue[1];
-                String studentGenderStr = keyValue[2];
-                String studentDOBStr = keyValue[3];
-                String studentPhoneNoStr = keyValue[4];
-                String studentAddressStr = keyValue[5];
-                String studentYearOfStudyStr = keyValue[6];
-                String studentGenerationStr = keyValue[7];
-                String studentDegreeStr = keyValue[8];
-                String userIDString = keyValue[9];
                 // convert data type
                 Integer studentIDInt = Integer.parseInt(studentIDStr);
-                int studentPhoneNoInt = Integer.parseInt(studentPhoneNoStr);
-                int studentYearOfStudyInt = Integer.parseInt(studentYearOfStudyStr);
-                int studentGenerationInt = Integer.parseInt(studentGenerationStr);
-                int userIDInt = Integer.parseInt(userIDString);
-
                 // Add the key-value pair to the HashMap.
-                studentList.put(studentIDInt, new StudentDepartment(studentNameStr, studentGenderStr, studentDOBStr,
-                        studentPhoneNoInt, studentAddressStr, studentYearOfStudyInt, studentGenerationInt,
-                        studentDegreeStr, userIDInt));
+                studentList.put(studentIDInt, studentNameStr);
             }
             // Close the file
             bufferedReader.close();
@@ -289,7 +188,7 @@ public class StudentDepartment {
         for (int key : studentInDepartment.keySet()) {
             if (studentInDepartment.get(key)[0] == deptpartmentID
                     || studentInDepartment.get(key)[1] == deptpartmentID) {
-                System.out.println(studentList.get(key).getStudentName());
+                System.out.println(studentList.get(key));
             }
         }
     }
@@ -299,7 +198,7 @@ public class StudentDepartment {
         System.out.println("Department enrolled by student " + studentID + ":");
         for (int key : studentInDepartment.keySet()) {
             if (key == studentID) {
-                //willo display only the department they enrolled in
+                //will only display only the department they enrolled in
                 if (department.get(studentInDepartment.get(key)[0]) != null) {
                     System.out.println(department.get(studentInDepartment.get(key)[0]));
                 }
