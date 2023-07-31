@@ -51,7 +51,6 @@ public class Teacher {
     HashMap<Integer, Teacher> teacherList = new HashMap<>();
     HashMap<Integer, int[]> teacherCourseList = new HashMap<>();
     HashMap<Integer, String> courseList = new HashMap<>();
-    
 
     // read file and input data to hashmap
     void readFile() {
@@ -84,6 +83,7 @@ public class Teacher {
             System.out.println(e);
         }
     }
+
     void readFileCourse() {
         try {
             // Creates a reader that is linked with the myFile.txt
@@ -128,10 +128,11 @@ public class Teacher {
     void displayLine() {
         System.out.println("=================================================");
     }
-    void displayMenu(){
+
+    void displayMenu() {
         displayLine();
         System.out.println("A. Add new teacher.");
-        System.out.println("B. Search teacher by ID.");	
+        System.out.println("B. Search teacher by ID.");
         System.out.println("C. Update teacher by ID.");
         System.out.println("D. Delete teacher by ID.");
         System.out.println("E. Display all course tough by a teacher.");
@@ -145,8 +146,9 @@ public class Teacher {
                 userID));
         writeFile();
     }
-    void searchTeacherByID(int teacherID){
-        if(teacherList.containsKey(teacherID)){
+
+    void searchTeacherByID(int teacherID) {
+        if (teacherList.containsKey(teacherID)) {
             System.out.println("Teacher ID: " + teacherID);
             System.out.println("Teacher Name: " + teacherList.get(teacherID).getTeacherName());
             System.out.println("Teacher gender: " + teacherList.get(teacherID).getTacherGender());
@@ -154,38 +156,40 @@ public class Teacher {
             System.out.println("Teacher phone number: " + teacherList.get(teacherID).getTeacherPhoneNo());
             System.out.println("Teacher address: " + teacherList.get(teacherID).getTeacherAddress());
             System.out.println("User ID: " + teacherList.get(teacherID).getUserID());
-        }else{
+        } else {
             System.out.println("Teacher ID does not exist!");
         }
     }
-    void deleteTeacherByID(int teacherID){
-        if(teacherList.containsKey(teacherID)){
+
+    void deleteTeacherByID(int teacherID) {
+        if (teacherList.containsKey(teacherID)) {
             teacherList.remove(teacherID);
-        }else{
+        } else {
             System.out.println("Teacher ID does not exist!");
         }
         writeFile();
     }
+
     void displayAllCourseToughByATeacher(int teacherID) {
         readFileCourse();
-        if(teacherList.containsKey(teacherID))
-        {System.out.println("Teacher ID: " + teacherID);
+        System.out.println("Teacher ID: " + teacherID);
         System.out.println("Teacher Name: " + teacherList.get(teacherID));
         for (int index = 0; index <= 4; index++) {
             if (teacherCourseList.get(teacherID)[index] != 0) {
                 System.out.println("Course ID: " + teacherCourseList.get(teacherID)[index]);
                 System.out.println("Course Name: " + courseList.get(teacherCourseList.get(teacherID)[index]));
             }
-        }}else{System.out.println("Teacher ID not found.");}
+        }
     }
-     //for teacher course assigning progam
-     void writeFileToTeacherCourse() {
+
+    // for teacher course assigning progam
+    void writeFileToTeacherCourse() {
         File file = new File("src\\data\\teacherCourse.txt");
         try {
             // write file back into account.txt
             FileWriter writer = new FileWriter(file, true);
             for (int key : teacherList.keySet()) {
-                writer.write(key + ", " + 0 + ", " + 0 +  ", " + 0+ ", " + 0+ ", " + 0+ ", " + 0 +"\n");
+                writer.write(key + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + "\n");
             }
             writer.close();
         } catch (Exception e) {
