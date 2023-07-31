@@ -8,41 +8,20 @@ import java.util.HashMap;
 
 
 public class Course {
-    private int courseID;
     private String courseName;
     private int credit;
     private String type;
 
-    public int getCourseID() {
-        return courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
-
     public String getCourseName() {
         return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     public int getCredit() {
         return credit;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     Course(String courseName, int credit, String type) {
@@ -106,9 +85,9 @@ public class Course {
     void displayMenu() {
         displayLine();
         System.out.println("A. Add new course.");
-        System.out.println("Search course by ID.");
-        System.out.println("Update course.");
-        System.out.println("Delete course.");
+        System.out.println("B. Search course by ID.");
+        System.out.println("C. Update course.");
+        System.out.println("D. Delete course.");
     }
 
     void createCourse(int courseID, String courseName, int credit, String type) {

@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.util.HashMap;
 
 public class Faculty {
-    private int facultyID;
     private String facultyName;
     private String deanName;
     private int officeNo;
@@ -16,33 +15,11 @@ public class Faculty {
     public String getDeanName() {
         return deanName;
     }
-
-    public void setDeanName(String deanName) {
-        this.deanName = deanName;
-    }
-
-    public int getFacultyID() {
-        return facultyID;
-    }
-
-    public void setFacultyID(int facultyID) {
-        this.facultyID = facultyID;
-    }
-
     public String getFacultyName() {
         return facultyName;
     }
-
-    public void setFacultyName(String facultyName) {
-        this.facultyName = facultyName;
-    }
-
     public int getOfficeNo() {
         return officeNo;
-    }
-
-    public void setOfficeNo(int officeNo) {
-        this.officeNo = officeNo;
     }
 
     public Faculty(String facultyName, String deanName, int officeNo) {

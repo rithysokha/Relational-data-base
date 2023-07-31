@@ -7,41 +7,15 @@ import java.io.FileWriter;
 import java.util.HashMap;
 
 public class TeacherCourse {
-    private int teacherID;
     private String teacherName;
-    private int courseID;
     private String courseName;
-
-    public int getTeacherID() {
-        return teacherID;
-    }
-
-    public void setTeacherID(int teacherID) {
-        this.teacherID = teacherID;
-    }
 
     public String getTeacherName() {
         return teacherName;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    public int getCourseID() {
-        return courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
-
     public String getCourseName() {
         return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     HashMap<Integer, int[]> teacherCourseList = new HashMap<>();
@@ -151,7 +125,7 @@ public class TeacherCourse {
 
     // write data back into txt file
     void writeFile() {
-        File file = new File("src\\data\\teacher.txt");
+        File file = new File("src\\data\\teacherCourse.txt");
         try {
             // write file back into account.txt
             FileWriter writer = new FileWriter(file);
@@ -167,18 +141,23 @@ public class TeacherCourse {
     }
 
     void assignCourseToATeacher(int teacherID, int courseID) {
-        if (teacherCourseList.get(teacherID)[0] == 0) {
-            teacherCourseList.get(teacherID)[0] = courseID;
-        } else if (teacherCourseList.get(teacherID)[1] == 0) {
-            teacherCourseList.get(teacherID)[1] = courseID;
-        } else if (teacherCourseList.get(teacherID)[2] == 0) {
-            teacherCourseList.get(teacherID)[2] = courseID;
-        } else if (teacherCourseList.get(teacherID)[3] == 0) {
-            teacherCourseList.get(teacherID)[3] = courseID;
-        } else if (teacherCourseList.get(teacherID)[4] == 0) {
-            teacherCourseList.get(teacherID)[4] = courseID;
+        if (courseList.containsKey(courseID)) {
+            if (teacherCourseList.get(teacherID)[0] == 0) {
+                teacherCourseList.get(teacherID)[0] = courseID;
+            } else if (teacherCourseList.get(teacherID)[1] == 0) {
+                teacherCourseList.get(teacherID)[1] = courseID;
+            } else if (teacherCourseList.get(teacherID)[2] == 0) {
+                teacherCourseList.get(teacherID)[2] = courseID;
+            } else if (teacherCourseList.get(teacherID)[3] == 0) {
+                teacherCourseList.get(teacherID)[3] = courseID;
+            } else if (teacherCourseList.get(teacherID)[4] == 0) {
+                teacherCourseList.get(teacherID)[4] = courseID;
+            } else {
+                System.out.println("This teacher has already assigned 5 courses");
+            }
+            writeFile();
         } else {
-            System.out.println("This teacher has already assigned 5 courses");
+            System.out.println("Course ID not found.");
         }
     }
 
@@ -196,6 +175,7 @@ public class TeacherCourse {
         } else {
             System.out.println("This teacher does not have this course");
         }
+        writeFile();
     }
 
     void displayAllCourseToughByATeacher(int teacherID) {

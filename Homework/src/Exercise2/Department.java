@@ -8,50 +8,22 @@ import java.io.FileWriter;
 import java.util.HashMap;
 
 public class Department {
-    private int deptID;
     private String deptName;
     private String headName;
     private int officeNo;
     private int facultyID;
 
-    public int getDeptID() {
-        return deptID;
-    }
-
-    public void setDeptID(int deptID) {
-        this.deptID = deptID;
-    }
-
     public String getDeptName() {
         return deptName;
     }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
-    }
-
     public String getHeadName() {
         return headName;
     }
-
-    public void setHeadName(String headName) {
-        this.headName = headName;
-    }
-
     public int getOfficeNo() {
         return officeNo;
     }
-
-    public void setOfficeNo(int officeNo) {
-        this.officeNo = officeNo;
-    }
-
     public int getFacultyID() {
         return facultyID;
-    }
-
-    public void setFacultyID(int facultyID) {
-        this.facultyID = facultyID;
     }
 
     public Department(String deptName, String headName, int officeNo, int facultyID) {

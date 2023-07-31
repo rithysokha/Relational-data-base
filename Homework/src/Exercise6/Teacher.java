@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.util.HashMap;
 
 public class Teacher {
-    private int teacherID;
     private String teacherName;
     private String tacherGender;
     private String teacherDOB;
@@ -15,60 +14,28 @@ public class Teacher {
     private String teacherAddress;
     private int userID;
 
-    public int getTeacherID() {
-        return teacherID;
-    }
-
-    public void setTeacherID(int teacherID) {
-        this.teacherID = teacherID;
-    }
-
     public String getTeacherName() {
         return teacherName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
     }
 
     public String getTacherGender() {
         return tacherGender;
     }
 
-    public void setTacherGender(String tacherGender) {
-        this.tacherGender = tacherGender;
-    }
-
     public String getTeacherDOB() {
         return teacherDOB;
-    }
-
-    public void setTeacherDOB(String teacherDOB) {
-        this.teacherDOB = teacherDOB;
     }
 
     public String getTeacherPhoneNo() {
         return teacherPhoneNo;
     }
 
-    public void setTeacherPhoneNo(String teacherPhoneNo) {
-        this.teacherPhoneNo = teacherPhoneNo;
-    }
-
     public String getTeacherAddress() {
         return teacherAddress;
     }
 
-    public void setTeacherAddress(String teacherAddress) {
-        this.teacherAddress = teacherAddress;
-    }
-
     public int getUserID() {
         return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     Teacher(String teacherName, String teacherGender, String teachrDOB, String teacherPoneNo, String teacherAddress,

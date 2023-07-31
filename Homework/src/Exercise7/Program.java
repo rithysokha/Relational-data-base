@@ -12,6 +12,7 @@ public class Program {
         int courseID;
         int teacherID;
         while(!exit){
+            teacherCourse.displayMenu();
             char choise = scanner.next().charAt(0);
             switch(choise){
                 case 'a', 'A':

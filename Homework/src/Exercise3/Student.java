@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.util.HashMap;
 
 public class Student {
-    private int studentID;
     private String studentName;
     private String studentGender;
     private String studentDOB;
@@ -19,81 +18,40 @@ public class Student {
     private String studentDegree;
     private int userID;
 
-    public int getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
-
     public String getStudentName() {
         return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
     }
 
     public String getStudentDegree() {
         return studentDegree;
     }
 
-    public void setStudentDegree(String studentDegree) {
-        this.studentDegree = studentDegree;
-    }
-
     public String getStudentDOB() {
         return studentDOB;
-    }
-
-    public void setStudentDOB(String studentDOB) {
-        this.studentDOB = studentDOB;
     }
 
     public String getStudentGender() {
         return studentGender;
     }
 
-    public void setStudentGender(String studentGender) {
-        this.studentGender = studentGender;
-    }
-
     public String getStudentAddress() {
         return studentAddress;
-    }
-
-    public void setStudentAddress(String studentAddress) {
-        this.studentAddress = studentAddress;
     }
 
     public int getStudentPhoneNo() {
         return studentPhoneNo;
     }
 
-    public void setStudentPhoneNo(int studentPhoneNo) {
-        this.studentPhoneNo = studentPhoneNo;
-    }
-
     public int getStudentGeneration() {
         return studentGeneration;
-    }
-
-    public void setStudentGeneration(int studentGeneration) {
-        this.studentGeneration = studentGeneration;
     }
 
     public int getStudentYearOfStudy() {
         return studentYearOfStudy;
     }
 
-    public void setStudentYearOfStudy(int studentYearOfStudy) {
-        this.studentYearOfStudy = studentYearOfStudy;
-    }
     public int getUserID() {
         return userID;
-    }public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public Student(String studentName, String studentGender, String studentDOB, int studentPhoneNo,
@@ -165,7 +123,8 @@ public class Student {
                         + studentList.get(key).getStudentGender() + ", " + studentList.get(key).getStudentDOB() + ", "
                         + studentList.get(key).getStudentPhoneNo() + ", " + studentList.get(key).getStudentAddress()
                         + ", " + studentList.get(key).getStudentYearOfStudy() + ", "
-                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree() + ", " + studentList.get(key).getUserID()
+                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree()
+                        + ", " + studentList.get(key).getUserID()
                         + "\n");
             }
             writer.close();
@@ -173,8 +132,8 @@ public class Student {
             System.out.println(e);
         }
     }
-   
-    //this method is reusable with update student by ID
+
+    // this method is reusable with update student by ID
     void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, int studentPhoneNo,
             String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
         displayLine();
@@ -182,8 +141,9 @@ public class Student {
                 studentYearOfStudy, studentGeneration, studentDegree, userID));
         writeFile();
     }
-    void searchStudentbyID(int studentID){
-        if(studentList.containsKey(studentID)){
+
+    void searchStudentbyID(int studentID) {
+        if (studentList.containsKey(studentID)) {
             System.out.println("Student ID: " + studentID);
             System.out.println("Student Name: " + studentList.get(studentID).getStudentName());
             System.out.println("Student gender: " + studentList.get(studentID).getStudentGender());
@@ -194,27 +154,28 @@ public class Student {
             System.out.println("Student generation: " + studentList.get(studentID).getStudentGeneration());
             System.out.println("Student degree: " + studentList.get(studentID).getStudentDegree());
             System.out.println("User ID: " + studentList.get(studentID).getUserID());
-        }else{
+        } else {
             System.out.println("Student ID not found");
         }
     }
 
-    void deleteStudentByID(int studentID){
-        if(studentList.containsKey(studentID)){
+    void deleteStudentByID(int studentID) {
+        if (studentList.containsKey(studentID)) {
             studentList.remove(studentID);
             writeFile();
-        }else{
+        } else {
             System.out.println("Student ID not found");
         }
     }
-    //for student enrolling progam
-     void writeFileToStudentDept() {
+
+    // for student enrolling progam
+    void writeFileToStudentDept() {
         File file = new File("src\\data\\studentDept.txt");
         try {
             // write file back into account.txt
             FileWriter writer = new FileWriter(file, true);
             for (int key : studentList.keySet()) {
-                writer.write(key + ", " + 0+ ", " + 0 + "\n");
+                writer.write(key + ", " + 0 + ", " + 0 + "\n");
             }
             writer.close();
         } catch (Exception e) {
