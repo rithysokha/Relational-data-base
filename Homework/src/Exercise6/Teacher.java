@@ -186,10 +186,17 @@ public class Teacher {
     void writeFileToTeacherCourse() {
         File file = new File("src\\data\\teacherCourse.txt");
         try {
-            // write file back into account.txt
-            FileWriter writer = new FileWriter(file, true);
+            FileWriter writer = new FileWriter(file);
+            
             for (int key : teacherList.keySet()) {
-                writer.write(key + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + "\n");
+                if(!teacherCourseList.containsKey(key)){
+                    writer.write(key + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + "\n");
+                }
+            }
+            for(int key: teacherList.keySet()){
+                if(teacherCourseList.containsKey(key)){
+                    writer.write(key + ", " + teacherCourseList.get(key)[0] + ", " + teacherCourseList.get(key)[1] + ", " + teacherCourseList.get(key)[2] + ", " + teacherCourseList.get(key)[3] + ", " + teacherCourseList.get(key)[4] + "\n");
+                }
             }
             writer.close();
         } catch (Exception e) {

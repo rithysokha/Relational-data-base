@@ -164,7 +164,7 @@ public class StudentDepartment {
         if (department.containsKey(departmentID)) {
             if (studentInDepartment.get(studentID)[1] != departmentID
                     && studentInDepartment.get(studentID)[0] != departmentID) { 
-                        // check if student is already enrolled in 2 departments
+                    // check if student is already enrolled in 2 departments
                 if (studentInDepartment.get(studentID)[0] == 0) {
                     studentInDepartment.get(studentID)[0] = departmentID;
                 } else if (studentInDepartment.get(studentID)[1] == 0) {
