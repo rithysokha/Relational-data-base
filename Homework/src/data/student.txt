@@ -1,2 +1,4 @@
-1, Meysorng, female, 29 Feb, 987654321, Banteay Meanchey, 2023, 8, Engineering, 1001
-2, Sunneng, Male, 31 June, 123456789, Porthisat, 2023, 8, Engineering, 1002
+1, sorng, female, 12, 6543, pp, 2023, 8, ba, 1001
+2, sovan, male, 123, 3456, pp, 2023, 8, ba, 1002
+3, Veha, 4, 4, 4, 4, 4, 4, 4, 1003
+4, thy, male, 12 june, 234567, pp, 2023, 8, ba, 1004

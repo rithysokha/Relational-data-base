@@ -1,2 +1,0 @@
-1, Sovila, male, 12 june, 0987654321, pp, 1
-2, daly, fenake, 1234, 1234567890, pp, 2

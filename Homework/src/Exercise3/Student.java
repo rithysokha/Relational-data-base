@@ -68,6 +68,7 @@ public class Student {
     }
 
     HashMap<Integer, Student> studentList = new HashMap<>();
+    HashMap<Integer, int[]> studentDept = new HashMap<>();
 
     void displayLine() {
         System.out.println("=================================================");
@@ -163,19 +164,54 @@ public class Student {
         if (studentList.containsKey(studentID)) {
             studentList.remove(studentID);
             writeFile();
+            writeFileToStudentDept();
         } else {
             System.out.println("Student ID not found");
         }
     }
 
     // for student enrolling progam
+    void readFileStudentDept() {
+        try {
+            FileReader reader = new FileReader("src\\data\\studentDept.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] keyValue = line.split(", ");
+                String studentIDStr = keyValue[0];
+                String departmentIDStr1 = keyValue[1];
+                String departmentIDStr2 = keyValue[2];
+
+                // convert data type
+                Integer studentIDInt = Integer.parseInt(studentIDStr);
+                int departmentIDInt1 = Integer.parseInt(departmentIDStr1);
+                int departmentIDInt2 = Integer.parseInt(departmentIDStr2);
+                int[] departmentArray = { departmentIDInt1, departmentIDInt2 };
+                studentDept.put(studentIDInt, departmentArray);
+                // Close the file
+                bufferedReader.close();
+                reader.close();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     void writeFileToStudentDept() {
+        readFileStudentDept();
         File file = new File("src\\data\\studentDept.txt");
         try {
             // write file back into account.txt
-            FileWriter writer = new FileWriter(file, true);
+            FileWriter writer = new FileWriter(file);
             for (int key : studentList.keySet()) {
-                writer.write(key + ", " + 0 + ", " + 0 + "\n");
+                if(!studentDept.containsKey(key)){
+                    writer.write(key + ", " + 0 + ", " + 0 + "\n");
+                }
+            }
+            for (int key : studentList.keySet()) {
+                if (studentDept.containsKey(key)) {
+                    writer.write(key + ", " + studentDept.get(key)[0] + ", " + studentDept.get(key)[1] + "\n");
+                }  
             }
             writer.close();
         } catch (Exception e) {

@@ -1,2 +1,2 @@
-1, Faculty of Engineering, unknown, 1
-2, Faculty of Science, unknown, 2
+1, Faculty of Engineer, idk, 222
+2, Faculty of Science, idk, 999

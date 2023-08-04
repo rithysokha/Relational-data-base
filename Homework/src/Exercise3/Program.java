@@ -12,6 +12,7 @@ public class Program {
     public static void main(String[] args) {
         Student student = new Student("", "", "", 0, "", 0, 0, "", 0);
         Program program = new Program();
+        student.readFile();
         boolean exit = false;
         int studentID = 0;
         String studentName = "";
@@ -53,8 +54,8 @@ public class Program {
                     scanner.nextLine();
                     System.out.println("Enter student degree: ");
                     studentDegree = scanner.nextLine();
-                    student.writeFileToStudentDept();
                     student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree, studentID+1000);
+                    student.writeFileToStudentDept();
                     }else{
                         System.out.println("Student ID already exists.");
                     }
