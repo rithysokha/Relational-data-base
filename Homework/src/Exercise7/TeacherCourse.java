@@ -142,6 +142,9 @@ public class TeacherCourse {
 
     void assignCourseToATeacher(int teacherID, int courseID) {
         if (courseList.containsKey(courseID)) {
+            if(teacherCourseList.get(teacherID)[0] != courseID && teacherCourseList.get(teacherID)[1] != courseID
+            && teacherCourseList.get(teacherID)[2] != courseID && teacherCourseList.get(teacherID)[3] != courseID
+            && teacherCourseList.get(teacherID)[4] != courseID){
             if (teacherCourseList.get(teacherID)[0] == 0) {
                 teacherCourseList.get(teacherID)[0] = courseID;
             } else if (teacherCourseList.get(teacherID)[1] == 0) {
@@ -155,7 +158,10 @@ public class TeacherCourse {
             } else {
                 System.out.println("This teacher has already assigned 5 courses");
             }
-            writeFile();
+            writeFile();}
+            else{
+                System.out.println("This teacher has already assigned this course");
+            }
         } else {
             System.out.println("Course ID not found.");
         }

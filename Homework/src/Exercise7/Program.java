@@ -8,6 +8,7 @@ public class Program {
         TeacherCourse teacherCourse = new TeacherCourse();
         teacherCourse.readFileTeacher();
         teacherCourse.readFileTeacherCourse();
+        teacherCourse.readFileCourse();
         boolean exit = false;
         int courseID;
         int teacherID;
