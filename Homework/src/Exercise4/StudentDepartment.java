@@ -55,6 +55,7 @@ public class StudentDepartment {
         System.out.println("B. Remove student from department");
         System.out.println("C. Display all student in department");
         System.out.println("D. Display departments enrolled by student");
+        System.out.println("E. Exit");
     }
 
     void readFileStudent() {
