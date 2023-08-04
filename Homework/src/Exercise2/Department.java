@@ -16,12 +16,15 @@ public class Department {
     public String getDeptName() {
         return deptName;
     }
+
     public String getHeadName() {
         return headName;
     }
+
     public int getOfficeNo() {
         return officeNo;
     }
+
     public int getFacultyID() {
         return facultyID;
     }
@@ -34,9 +37,36 @@ public class Department {
     }
 
     HashMap<Integer, Department> departmentList = new HashMap<>();
+    HashMap<Integer, String> facultyList = new HashMap<>();
 
     void displayLine() {
         System.out.println("==================================================");
+    }
+
+    // read file and input data to hashmap
+    void readFileFaculty() {
+        try {
+            // Creates a reader that is linked with the myFile.txt
+            FileReader reader = new FileReader("src\\data\\faculty.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] keyValue = line.split(", ");
+                String facID = keyValue[0];
+                String facultyNameStr = keyValue[1];
+                // convert string to integer and double
+                Integer facultyIdInt = Integer.parseInt(facID);
+
+                // Add the key-value pair to the HashMap.
+                facultyList.put(facultyIdInt, facultyNameStr);
+            }
+
+            // Close the file.
+            bufferedReader.close();
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     // read file and input data to hashmap
@@ -91,8 +121,12 @@ public class Department {
     // this method is reusable with update department by ID
     void addNewDepartment(int deptID, String deptName, String headName, int officeNo, int facultyID) {
         displayLine();
-        departmentList.put(deptID, new Department(deptName, headName, officeNo, facultyID));
-        writeFile();
+        if (facultyList.containsKey(facultyID)) {
+            departmentList.put(deptID, new Department(deptName, headName, officeNo, facultyID));
+            writeFile();
+        } else {
+            System.out.println("Faculfty ID invalid");
+        }
     }
 
     // this method is used to search department by ID
@@ -124,14 +158,23 @@ public class Department {
     void deisplayDepartmentInFaculty(int facultyID) {
         displayLine();
         readFile();
-        System.out.println("Department in faculty: ");
-        System.out.println("Faculty ID" + "\t" + "Department ID" + "\t" + "Department name" + "\t"
-                + "Department head name" + "\t" + "Department office No");
-        for (int key : departmentList.keySet()) {
-            if (departmentList.get(key).getFacultyID() == facultyID) {
-                System.out.println(facultyID + "\t" + key + "\t" + departmentList.get(key).getDeptName() + "\t"
-                        + departmentList.get(key).getHeadName() + "\t" + departmentList.get(key).getOfficeNo());
+        if (facultyList.containsKey(facultyID)) {
+            System.out.println("Department in " + facultyList.get(facultyID) + ":");
+            System.out.println("Department ID" + "\t" + "Department name" + "\t"
+                    + "Department head name" + "\t" + "Department office No");
+            for (int key : departmentList.keySet()) {
+                if (departmentList.get(key).getFacultyID() == facultyID) {
+                    System.out.printf("%-15d %-15s %-23s %d ", key, departmentList.get(key).getDeptName(),
+                            departmentList.get(key).getHeadName(), departmentList.get(key).getOfficeNo());
+                    System.out.println();
+                }else{
+                    displayLine();
+                    System.out.println("***There is no department in this faculty***");
+                    return;
+                }
             }
+        } else {
+            System.out.println("Invalid faculty ID");
         }
     }
 }

@@ -19,6 +19,7 @@ public class Program {
         Department department = new Department(null, null, 0, 0);
         Program program = new Program();
         department.readFile();
+        department.readFileFaculty();
         int deptID = 0;
         String deptName = "";
         String headName = "";
