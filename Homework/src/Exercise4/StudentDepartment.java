@@ -40,6 +40,7 @@ public class StudentDepartment {
     public String getDepartmentName() {
         return departmentName;
     }
+
     HashMap<Integer, String> studentList = new HashMap<>();
     HashMap<Integer, int[]> studentInDepartment = new HashMap<>();
     HashMap<Integer, String> department = new HashMap<>();
@@ -160,15 +161,25 @@ public class StudentDepartment {
     }
 
     void enrollStudentToDepartment(int studentID, int departmentID) {
-        // check if student is already enrolled in 2 departments
-        if (studentInDepartment.get(studentID)[0] == 0) {
-            studentInDepartment.get(studentID)[0] = departmentID;
-        } else if (studentInDepartment.get(studentID)[1] == 0) {
-            studentInDepartment.get(studentID)[1] = departmentID;
+        if (department.containsKey(departmentID)) {
+            if (studentInDepartment.get(studentID)[1] != departmentID
+                    && studentInDepartment.get(studentID)[0] != departmentID) { 
+                        // check if student is already enrolled in 2 departments
+                if (studentInDepartment.get(studentID)[0] == 0) {
+                    studentInDepartment.get(studentID)[0] = departmentID;
+                } else if (studentInDepartment.get(studentID)[1] == 0) {
+                    studentInDepartment.get(studentID)[1] = departmentID;
+                } else {
+                    System.out.println("Student is already enrolled in 2 departments");
+                }
+                writeFile();
+            } else {
+                System.out.println("Student is already enrolled in this department");
+            }
         } else {
-            System.out.println("Student is already enrolled in 2 departments");
+            System.out.println("Department ID is invalid");
         }
-        writeFile();
+
     }
 
     void removeStudentFromDepartment(int studentID, int departmentID) {
@@ -184,28 +195,35 @@ public class StudentDepartment {
     }
 
     void displayAllStudentInDepartment(int deptpartmentID) {
-        System.out.println("Student in department " + deptpartmentID + ":");
-        for (int key : studentInDepartment.keySet()) {
-            if (studentInDepartment.get(key)[0] == deptpartmentID
-                    || studentInDepartment.get(key)[1] == deptpartmentID) {
-                System.out.println(studentList.get(key));
+        if (department.containsKey(deptpartmentID)) {
+            System.out.println("Student in department " + deptpartmentID + ":");
+            for (int key : studentInDepartment.keySet()) {
+                if (studentInDepartment.get(key)[0] == deptpartmentID
+                        || studentInDepartment.get(key)[1] == deptpartmentID) {
+                    System.out.println(studentList.get(key));
+                }
             }
+        } else {
+            System.out.println("Department ID is invalid");
         }
     }
 
     void displayAllDepartmentOfStudent(int studentID) {
-        readFileDepartment();
-        System.out.println("Department enrolled by student " + studentID + ":");
-        for (int key : studentInDepartment.keySet()) {
-            if (key == studentID) {
-                //will only display only the department they enrolled in
-                if (department.get(studentInDepartment.get(key)[0]) != null) {
-                    System.out.println(department.get(studentInDepartment.get(key)[0]));
-                }
-                if (department.get(studentInDepartment.get(key)[1]) != null) {
-                    System.out.println(department.get(studentInDepartment.get(key)[1]));
+        if (studentList.containsKey(studentID)) {
+            System.out.println("Department enrolled by student " + studentID + ":");
+            for (int key : studentInDepartment.keySet()) {
+                if (key == studentID) {
+                    // will only display only the department they enrolled in
+                    if (department.get(studentInDepartment.get(key)[0]) != null) {
+                        System.out.println(department.get(studentInDepartment.get(key)[0]));
+                    }
+                    if (department.get(studentInDepartment.get(key)[1]) != null) {
+                        System.out.println(department.get(studentInDepartment.get(key)[1]));
+                    }
                 }
             }
+        } else {
+            System.out.println("Student ID is invalid");
         }
     }
 

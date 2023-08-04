@@ -7,6 +7,7 @@ public class Program {
         StudentDepartment student = new StudentDepartment();
         student.readFileStudent();
         student.readFileStudentDept();
+        student.readFileDepartment();
         Scanner scanner = new Scanner(System.in);
         int studentID = 0;
         int departmentID = 0;
@@ -21,10 +22,14 @@ public class Program {
                         System.out.println("Enter student ID: ");
                         studentID = scanner.nextInt();
                         scanner.nextLine();
-                        System.out.println("Enter department ID: ");
-                        departmentID = scanner.nextInt();
-                        scanner.nextLine();
-                        student.enrollStudentToDepartment(studentID, departmentID);
+                        if (student.studentList.containsKey(studentID)) {
+                            System.out.println("Enter department ID: ");
+                            departmentID = scanner.nextInt();
+                            scanner.nextLine();
+                            student.enrollStudentToDepartment(studentID, departmentID);
+                        } else {
+                            System.out.println("Student ID not found");
+                        }
                     } catch (Exception e) {
                         System.out.println(e);
                     }
@@ -34,10 +39,14 @@ public class Program {
                         System.out.println("Enter student ID: ");
                         studentID = scanner.nextInt();
                         scanner.nextLine();
-                        System.out.println("Enter department ID: ");
-                        departmentID = scanner.nextInt();
-                        scanner.nextLine();
-                        student.removeStudentFromDepartment(studentID, departmentID);
+                        if (student.studentList.containsKey(studentID)) {
+                            System.out.println("Enter department ID: ");
+                            departmentID = scanner.nextInt();
+                            scanner.nextLine();
+                            student.removeStudentFromDepartment(studentID, departmentID);
+                        } else {
+                            System.out.println("Student ID not found");
+                        }
                     } catch (Exception e) {
                         System.out.println(e);
                     }
