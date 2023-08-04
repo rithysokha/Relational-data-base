@@ -10,7 +10,7 @@ public class Program {
         System.out.println("E. exit");
     }
     public static void main(String[] args) {
-        Student student = new Student("", "", "", 0, "", 0, 0, "", 0);
+        Student student = new Student("", "", "", "", "", 0, 0, "", 0);
         Program program = new Program();
         student.readFile();
         boolean exit = false;
@@ -18,7 +18,7 @@ public class Program {
         String studentName = "";
         String studentGender = "";
         String studentDOB = "";
-        int studentPhoneNo = 0;
+        String studentPhoneNo = "";
         String studentAddress = "";
         int studentYearOfStudy = 0;
         int studentGeneration = 0;
@@ -42,8 +42,7 @@ public class Program {
                     System.out.println("Enter student DOB: ");
                     studentDOB = scanner.nextLine();
                     System.out.println("Enter student phone No: ");
-                    studentPhoneNo = scanner.nextInt();
-                    scanner.nextLine();
+                    studentPhoneNo = scanner.nextLine();
                     System.out.println("Enter student address: ");
                     studentAddress = scanner.nextLine();
                     System.out.println("Enter student year of study: ");	
@@ -86,8 +85,7 @@ public class Program {
                     System.out.println("Enter student DOB: ");
                     studentDOB = scanner.nextLine();
                     System.out.println("Enter student phone No: ");
-                    studentPhoneNo = scanner.nextInt();
-                    scanner.nextLine();
+                    studentPhoneNo = scanner.nextLine();
                     System.out.println("Enter student address: ");
                     studentAddress = scanner.nextLine();
                     System.out.println("Enter student year of study: ");	

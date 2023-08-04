@@ -11,7 +11,7 @@ public class Student {
     private String studentName;
     private String studentGender;
     private String studentDOB;
-    private int studentPhoneNo;
+    private String studentPhoneNo;
     private String studentAddress;
     private int studentYearOfStudy;
     private int studentGeneration;
@@ -38,7 +38,7 @@ public class Student {
         return studentAddress;
     }
 
-    public int getStudentPhoneNo() {
+    public String getStudentPhoneNo() {
         return studentPhoneNo;
     }
 
@@ -54,7 +54,7 @@ public class Student {
         return userID;
     }
 
-    public Student(String studentName, String studentGender, String studentDOB, int studentPhoneNo,
+    public Student(String studentName, String studentGender, String studentDOB, String studentPhoneNo,
             String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
         this.studentName = studentName;
         this.studentGender = studentGender;
@@ -95,14 +95,13 @@ public class Student {
                 String userIDString = keyValue[9];
                 // convert data type
                 Integer studentIDInt = Integer.parseInt(studentIDStr);
-                int studentPhoneNoInt = Integer.parseInt(studentPhoneNoStr);
                 int studentYearOfStudyInt = Integer.parseInt(studentYearOfStudyStr);
                 int studentGenerationInt = Integer.parseInt(studentGenerationStr);
                 int userIDInt = Integer.parseInt(userIDString);
 
                 // Add the key-value pair to the HashMap.
                 studentList.put(studentIDInt, new Student(studentNameStr, studentGenderStr, studentDOBStr,
-                        studentPhoneNoInt, studentAddressStr, studentYearOfStudyInt, studentGenerationInt,
+                        studentPhoneNoStr, studentAddressStr, studentYearOfStudyInt, studentGenerationInt,
                         studentDegreeStr, userIDInt));
             }
             // Close the file
@@ -135,7 +134,7 @@ public class Student {
     }
 
     // this method is reusable with update student by ID
-    void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, int studentPhoneNo,
+    void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, String studentPhoneNo,
             String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
         displayLine();
         studentList.put(studentID, new Student(studentName, studentGender, studentDOB, studentPhoneNo, studentAddress,
@@ -207,14 +206,14 @@ public class Student {
             // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : studentList.keySet()) {
-                if(!studentDept.containsKey(key)){
+                if (!studentDept.containsKey(key)) {
                     writer.write(key + ", " + 0 + ", " + 0 + "\n");
                 }
             }
             for (int key : studentList.keySet()) {
                 if (studentDept.containsKey(key)) {
                     writer.write(key + ", " + studentDept.get(key)[0] + ", " + studentDept.get(key)[1] + "\n");
-                }  
+                }
             }
             writer.close();
         } catch (Exception e) {
