@@ -55,7 +55,6 @@ public class Program {
                     System.out.println("Enter student degree: ");
                     studentDegree = scanner.nextLine();
                     student.addNewStudent(studentID, studentName, studentGender, studentDOB, studentPhoneNo, studentAddress, studentYearOfStudy, studentGeneration, studentDegree, studentID+1000);
-                    student.writeFileToStudentDept();
                     }else{
                         System.out.println("Student ID already exists.");
                     }

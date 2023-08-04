@@ -141,9 +141,11 @@ public class Student {
         studentList.put(studentID, new Student(studentName, studentGender, studentDOB, studentPhoneNo, studentAddress,
                 studentYearOfStudy, studentGeneration, studentDegree, userID));
         writeFile();
+        writeFileToStudentDept();
     }
 
     void searchStudentbyID(int studentID) {
+        displayLine();
         if (studentList.containsKey(studentID)) {
             System.out.println("Student ID: " + studentID);
             System.out.println("Student Name: " + studentList.get(studentID).getStudentName());
@@ -161,6 +163,7 @@ public class Student {
     }
 
     void deleteStudentByID(int studentID) {
+        displayLine();
         if (studentList.containsKey(studentID)) {
             studentList.remove(studentID);
             writeFile();
@@ -189,7 +192,7 @@ public class Student {
                 int[] departmentArray = { departmentIDInt1, departmentIDInt2 };
                 studentDept.put(studentIDInt, departmentArray);
                 // Close the file
-                bufferedReader.close();
+                // bufferedReader.close();
                 reader.close();
             }
         } catch (Exception e) {

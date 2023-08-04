@@ -106,6 +106,47 @@ public class Teacher {
             System.out.println(e);
         }
     }
+      // read file teacherCourse.txt and put into teacherCourseList
+      void readFileTeacherCourse() {
+        try {
+            // Creates a reader that is linked with the myFile.txt
+            FileReader reader = new FileReader("src\\data\\teacherCourse.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] keyValue = line.split(", ");
+                String teacherIDStr = keyValue[0];
+
+                String courseIDStr1 = keyValue[1];
+                String courseIDStr2 = keyValue[2];
+                String courseIDStr3 = keyValue[3];
+                String courseIDStr4 = keyValue[4];
+                String courseIDStr5 = keyValue[5];
+
+                // convert data type
+                Integer teacherIDInteger = Integer.parseInt(teacherIDStr);
+                int courseIDInt1 = Integer.parseInt(courseIDStr1);
+                int courseIDInt2 = Integer.parseInt(courseIDStr2);
+                int courseIDInt3 = Integer.parseInt(courseIDStr3);
+                int courseIDInt4 = Integer.parseInt(courseIDStr4);
+                int courseIDInt5 = Integer.parseInt(courseIDStr5);
+
+                // storing department id for each student (max 5)
+                int[] courseArray = new int[5];
+                courseArray[0] = courseIDInt1;
+                courseArray[1] = courseIDInt2;
+                courseArray[2] = courseIDInt3;
+                courseArray[3] = courseIDInt4;
+                courseArray[4] = courseIDInt5;
+                teacherCourseList.put(teacherIDInteger, courseArray);
+            }
+            // Close the file
+            // bufferedReader.close();
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     // write data back into txt file
     void writeFile() {
@@ -145,6 +186,7 @@ public class Teacher {
         teacherList.put(teacherID, new Teacher(teacherName, teacherGender, teachrDOB, teacherPoneNo, teacherAddress,
                 userID));
         writeFile();
+        writeFileToTeacherCourse();
     }
 
     void searchTeacherByID(int teacherID) {
@@ -184,6 +226,7 @@ public class Teacher {
 
     // for teacher course assigning progam
     void writeFileToTeacherCourse() {
+        readFileTeacherCourse();
         File file = new File("src\\data\\teacherCourse.txt");
         try {
             FileWriter writer = new FileWriter(file);

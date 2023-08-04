@@ -1,2 +1,0 @@
-1, APL, 3, code
-2, DSA, 3, code

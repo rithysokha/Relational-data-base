@@ -1,2 +1,2 @@
-1, Faculty of Engineer, idk, 222
-2, Faculty of Science, idk, 999
+1, Faculty of Engineering, Sovila, 1
+2, Faculty of Science, idk, 1
