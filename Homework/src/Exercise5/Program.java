@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Course course = new Course(null, 0, null);
+        course.readFile();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         int courseID = 0;
