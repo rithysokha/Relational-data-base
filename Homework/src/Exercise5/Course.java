@@ -15,15 +15,12 @@ public class Course {
     public String getCourseName() {
         return courseName;
     }
-
     public int getCredit() {
         return credit;
     }
-
     public String getType() {
         return type;
     }
-
     Course(String courseName, int credit, String type) {
         this.courseName = courseName;
         this.credit = credit;
@@ -35,7 +32,6 @@ public class Course {
     // read file and input data to hashmap
     void readFile() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\course.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -65,7 +61,6 @@ public class Course {
     void writeFile() {
         File file = new File("src\\data\\course.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : courseList.keySet()) {
                 writer.write(key + ", " + courseList.get(key).getCourseName() + ", " +
@@ -89,11 +84,12 @@ public class Course {
         System.out.println("C. Update course.");
         System.out.println("D. Delete course.");
     }
-
+    //create course
+    //this method is reusable with update course
     void createCourse(int courseID, String courseName, int credit, String type) {
         courseList.put(courseID, new Course(courseName, credit, type));
     }
-
+    //search course by id
     void searchCourse(int courseID) {
         if (courseList.containsKey(courseID)) {
             System.out.println("Course name: " + courseList.get(courseID).getCourseName());
@@ -103,7 +99,7 @@ public class Course {
             System.out.println("Course not found.");
         }
     }
-
+    //delete course by id
     void deleteCourse(int courseID) {
         if (courseList.containsKey(courseID)) {
             courseList.remove(courseID);

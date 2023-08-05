@@ -42,8 +42,17 @@ public class Department {
     void displayLine() {
         System.out.println("==================================================");
     }
-
-    // read file and input data to hashmap
+    void displayMenu(){
+        displayLine();
+        System.out.println("Choose an option: ");
+        System.out.println("A. Add new department");
+        System.out.println("B. Search department by ID");
+        System.out.println("C. Update department by ID");
+        System.out.println("D. Delete department by ID");
+        System.out.println("E. Display department in faculty");
+        System.out.println("F. Exit");
+}
+    // read file and input data to hashmap facultyList
     void readFileFaculty() {
         try {
             // Creates a reader that is linked with the myFile.txt
@@ -54,6 +63,7 @@ public class Department {
                 String[] keyValue = line.split(", ");
                 String facID = keyValue[0];
                 String facultyNameStr = keyValue[1];
+
                 // convert string to integer and double
                 Integer facultyIdInt = Integer.parseInt(facID);
 
@@ -69,7 +79,7 @@ public class Department {
         }
     }
 
-    // read file and input data to hashmap
+    // read file and input data to hashmap departmentList
     void readFile() {
         try {
             // Creates a reader that is linked with the myFile.txt
@@ -83,6 +93,7 @@ public class Department {
                 String headNameStr = keyValue[2];
                 String officeNoStr = keyValue[3];
                 String facultyIDStr = keyValue[4];
+
                 // convert string to integer and double
                 Integer deptIdInt = Integer.parseInt(deptIDStr);
                 int officeNoInt = Integer.parseInt(officeNoStr);
@@ -100,11 +111,10 @@ public class Department {
         }
     }
 
-    // write data back into txt file
+    // write data back into department.txt file
     void writeFile() {
         File file = new File("src\\data\\department.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : departmentList.keySet()) {
                 writer.write(key + ", " + departmentList.get(key).getDeptName() + ", " +
@@ -143,7 +153,7 @@ public class Department {
         }
     }
 
-    // this method is used to delete department by ID
+    // delete department by ID
     void deleteDepartmentByID(int deptID) {
         displayLine();
         if (departmentList.containsKey(deptID)) {
@@ -154,7 +164,7 @@ public class Department {
         }
     }
 
-    // this method is used to display department in faculty
+    // display department in faculty
     void deisplayDepartmentInFaculty(int facultyID) {
         displayLine();
         readFile();
@@ -169,7 +179,7 @@ public class Department {
                     System.out.println();
                 }else{
                     displayLine();
-                    System.out.println("***There is no department in this faculty***");
+                    System.out.println("***There is no department in this faculty***");//if there is no department in this faculty
                     return;
                 }
             }

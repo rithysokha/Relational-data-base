@@ -4,20 +4,8 @@ package Exercise2;
 import java.util.Scanner;
 
 public class Program {
-    void displayMenu(){
-        Department department = new Department(null, null, 0, 0);
-            department.displayLine();
-            System.out.println("Choose an option: ");
-            System.out.println("A. Add new department");
-            System.out.println("B. Search department by ID");
-            System.out.println("C. Update department by ID");
-            System.out.println("D. Delete department by ID");
-            System.out.println("E. Display department in faculty");
-            System.out.println("F. Exit");
-    }
     public static void main(String[] args) {
         Department department = new Department(null, null, 0, 0);
-        Program program = new Program();
         department.readFile();
         department.readFileFaculty();
         int deptID = 0;
@@ -28,7 +16,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while (!exit) {
-            program.displayMenu();
+            department.displayMenu();
             char choise = scanner.next().charAt(0);
             switch (choise) {
                 case 'a', 'A':
@@ -36,6 +24,7 @@ public class Program {
                     System.out.println("Enter department ID: ");
                     deptID = scanner.nextInt();
                     scanner.nextLine();
+                    //check validility of department ID
                     if (!department.departmentList.containsKey(deptID)) {
                         System.out.println("Enter department name: ");
                         deptName = scanner.nextLine();
@@ -70,6 +59,7 @@ public class Program {
                 System.out.println("Enter department ID: ");
                 deptID = scanner.nextInt();
                 scanner.nextLine();
+                //check validity of department ID
                 if(department.departmentList.containsKey(deptID)){
                     System.out.println("Enter new department name: ");
                     deptName = scanner.nextLine();
@@ -81,7 +71,7 @@ public class Program {
                     System.out.println("Enter faculty ID: ");
                     facultyID = scanner.nextInt();
                     scanner.nextLine();
-                    //reuse addNewDepartment method to save space
+                    //reuse addNewDepartment method
                     department.addNewDepartment(deptID, deptName, headName, officeNo, facultyID);
                 }else{
                     System.out.println("Invalid department ID.");

@@ -23,7 +23,6 @@ public class Account {
      // read file and input data to hashmap
     void readFileStudent() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\student.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -48,7 +47,6 @@ public class Account {
     // read file and input data to hashmap
     void readFileTeacher() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacher.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -73,7 +71,6 @@ public class Account {
     void writeFile() {
         File file = new File("src\\data\\account.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : accountList.keySet()) {
                 writer.write(key + ", " +accountList.get(key)+ "\n");
@@ -83,6 +80,7 @@ public class Account {
             System.out.println(e);
         }
     }
+    //create account
     void createAccount(int userID, int password){
         displayLine();
         accountList.put(userID, password);

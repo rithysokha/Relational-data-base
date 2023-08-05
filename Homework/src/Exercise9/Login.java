@@ -12,7 +12,6 @@ public class Login {
     // read file and input data to hashmap
     void readFileStudent() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\student.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -37,7 +36,6 @@ public class Login {
     // read file and input data to hashmap
     void readFileTeacher() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacher.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -60,7 +58,6 @@ public class Login {
 
     void readFileAccount() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\account.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -81,13 +78,16 @@ public class Login {
             System.out.println(e);
         }
     }
+    //login
     void logIn(int userID, int password){
         if (accountList.containsKey(userID)) {
             if (accountList.get(userID) == password) {
                 System.out.println("Login successful");
+                //if the userID higher than 1000 they are student
                 if (userID > 1000) {
                     System.out.println("Hi student " + studentList.get(userID - 1000));
                 } else {
+                    //if userID lower than 1000 they are teacher
                     System.out.println("Hi teacher " + teacherList.get(userID));
                 }
             } else {

@@ -21,7 +21,7 @@ public class Program {
                         userID = scanner.nextInt();
                         scanner.nextLine();
                         if (account.studentList.containsKey(userID)) {
-                            userID+=1000;
+                            userID+=1000;//add 1000 to the student userID so we can know who are them when login
                             if (!account.accountList.containsKey(userID)) {
                                 System.out.println("Enter new password: ");
                                 password = scanner.nextInt();

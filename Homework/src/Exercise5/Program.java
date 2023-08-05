@@ -1,3 +1,4 @@
+//group8
 package Exercise5;
 
 import java.util.Scanner;
@@ -22,6 +23,7 @@ public class Program {
                         System.out.println("Enter course ID: ");
                         courseID = scanner.nextInt();
                         scanner.nextLine();
+                        //check if the course is already exist
                         if (!course.courseList.containsKey(courseID)) {
                             System.out.println("Enter course name: ");
                             courseName = scanner.nextLine();

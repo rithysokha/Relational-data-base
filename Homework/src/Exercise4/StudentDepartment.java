@@ -43,7 +43,7 @@ public class StudentDepartment {
 
     HashMap<Integer, String> studentList = new HashMap<>();
     HashMap<Integer, int[]> studentInDepartment = new HashMap<>();
-    HashMap<Integer, String> department = new HashMap<>();
+    HashMap<Integer, String> departmentList = new HashMap<>();
 
     void displayLine() {
         System.out.println("==========================================================");
@@ -57,11 +57,9 @@ public class StudentDepartment {
         System.out.println("D. Display departments enrolled by student");
         System.out.println("E. Exit");
     }
-
+    //read file and input data to hashmap studentList
     void readFileStudent() {
-        // read file for student
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\student.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -82,11 +80,9 @@ public class StudentDepartment {
         }
 
     }
-
+    //read file studentDept and put data to hashmap studentInDepartment
     void readFileStudentDept() {
-        // read file for student in department
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\studentDept.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -122,7 +118,6 @@ public class StudentDepartment {
     // read department file and put into hashmap
     void readFileDepartment() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\department.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -134,7 +129,7 @@ public class StudentDepartment {
                 Integer deptIdInt = Integer.parseInt(deptIDStr);
 
                 // Add the key-value pair to the HashMap.
-                department.put(deptIdInt, deptNameStr);
+                departmentList.put(deptIdInt, deptNameStr);
             }
 
             // Close the file.
@@ -149,7 +144,6 @@ public class StudentDepartment {
     void writeFile() {
         File file = new File("src\\data\\studentDept.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : studentInDepartment.keySet()) {
                 writer.write(
@@ -160,9 +154,10 @@ public class StudentDepartment {
             System.out.println("Student ID is invalid");
         }
     }
-
+    // enroll studnent into department (max 2)
     void enrollStudentToDepartment(int studentID, int departmentID) {
-        if (department.containsKey(departmentID)) {
+        if (departmentList.containsKey(departmentID)) {
+            //check if student is already enrolled in that department
             if (studentInDepartment.get(studentID)[1] != departmentID
                     && studentInDepartment.get(studentID)[0] != departmentID) { 
                     // check if student is already enrolled in 2 departments
@@ -182,7 +177,7 @@ public class StudentDepartment {
         }
 
     }
-
+    //remove student from department
     void removeStudentFromDepartment(int studentID, int departmentID) {
         // check if student is enrolled in the department
         if (studentInDepartment.get(studentID)[0] == departmentID) {
@@ -194,13 +189,13 @@ public class StudentDepartment {
         }
         writeFile();
     }
-
-    void displayAllStudentInDepartment(int deptpartmentID) {
-        if (department.containsKey(deptpartmentID)) {
-            System.out.println("Student in department " + deptpartmentID + ":");
+    //display all student in department
+    void displayAllStudentInDepartment(int departmentID) {
+        if (departmentList.containsKey(departmentID)) {
+            System.out.println("Student in department " + departmentList.get(departmentID) + ":");
             for (int key : studentInDepartment.keySet()) {
-                if (studentInDepartment.get(key)[0] == deptpartmentID
-                        || studentInDepartment.get(key)[1] == deptpartmentID) {
+                if (studentInDepartment.get(key)[0] == departmentID
+                        || studentInDepartment.get(key)[1] == departmentID) {
                     System.out.println(studentList.get(key));
                 }
             }
@@ -208,18 +203,18 @@ public class StudentDepartment {
             System.out.println("Department ID is invalid");
         }
     }
-
+    //display all department that one student enrolled
     void displayAllDepartmentOfStudent(int studentID) {
         if (studentList.containsKey(studentID)) {
-            System.out.println("Department enrolled by student " + studentID + ":");
+            System.out.println("Department enrolled by student " + studentList.get(studentID) + ":");
             for (int key : studentInDepartment.keySet()) {
                 if (key == studentID) {
                     // will only display only the department they enrolled in
-                    if (department.get(studentInDepartment.get(key)[0]) != null) {
-                        System.out.println(department.get(studentInDepartment.get(key)[0]));
+                    if (departmentList.get(studentInDepartment.get(key)[0]) != null) {
+                        System.out.println(departmentList.get(studentInDepartment.get(key)[0]));
                     }
-                    if (department.get(studentInDepartment.get(key)[1]) != null) {
-                        System.out.println(department.get(studentInDepartment.get(key)[1]));
+                    if (departmentList.get(studentInDepartment.get(key)[1]) != null) {
+                        System.out.println(departmentList.get(studentInDepartment.get(key)[1]));
                     }
                 }
             }

@@ -74,10 +74,17 @@ public class Student {
         System.out.println("=================================================");
     }
 
+    void displayMenu() {
+        System.out.println("A. Add new student");
+        System.out.println("B. Search student by ID");
+        System.out.println("C. Update student by ID");
+        System.out.println("D. Delete student by ID");
+        System.out.println("E. exit");
+    }
+
     // read file and input data to hashmap
     void readFile() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\student.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -93,6 +100,7 @@ public class Student {
                 String studentGenerationStr = keyValue[7];
                 String studentDegreeStr = keyValue[8];
                 String userIDString = keyValue[9];
+
                 // convert data type
                 Integer studentIDInt = Integer.parseInt(studentIDStr);
                 int studentYearOfStudyInt = Integer.parseInt(studentYearOfStudyStr);
@@ -109,66 +117,6 @@ public class Student {
             reader.close();
         } catch (Exception e) {
             System.out.println(e);
-        }
-    }
-
-    // write data back into txt file
-    void writeFile() {
-        File file = new File("src\\data\\student.txt");
-        try {
-            // write file back into account.txt
-            FileWriter writer = new FileWriter(file);
-            for (int key : studentList.keySet()) {
-                writer.write(key + ", " + studentList.get(key).getStudentName() + ", "
-                        + studentList.get(key).getStudentGender() + ", " + studentList.get(key).getStudentDOB() + ", "
-                        + studentList.get(key).getStudentPhoneNo() + ", " + studentList.get(key).getStudentAddress()
-                        + ", " + studentList.get(key).getStudentYearOfStudy() + ", "
-                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree()
-                        + ", " + studentList.get(key).getUserID()
-                        + "\n");
-            }
-            writer.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    // this method is reusable with update student by ID
-    void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB, String studentPhoneNo,
-            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
-        displayLine();
-        studentList.put(studentID, new Student(studentName, studentGender, studentDOB, studentPhoneNo, studentAddress,
-                studentYearOfStudy, studentGeneration, studentDegree, userID));
-        writeFile();
-        writeFileToStudentDept();
-    }
-
-    void searchStudentbyID(int studentID) {
-        displayLine();
-        if (studentList.containsKey(studentID)) {
-            System.out.println("Student ID: " + studentID);
-            System.out.println("Student Name: " + studentList.get(studentID).getStudentName());
-            System.out.println("Student gender: " + studentList.get(studentID).getStudentGender());
-            System.out.println("Student DOB: " + studentList.get(studentID).getStudentDOB());
-            System.out.println("Student phone No: " + studentList.get(studentID).getStudentPhoneNo());
-            System.out.println("Student address: " + studentList.get(studentID).getStudentAddress());
-            System.out.println("Student year of study: " + studentList.get(studentID).getStudentYearOfStudy());
-            System.out.println("Student generation: " + studentList.get(studentID).getStudentGeneration());
-            System.out.println("Student degree: " + studentList.get(studentID).getStudentDegree());
-            System.out.println("User ID: " + studentList.get(studentID).getUserID());
-        } else {
-            System.out.println("Student ID not found");
-        }
-    }
-
-    void deleteStudentByID(int studentID) {
-        displayLine();
-        if (studentList.containsKey(studentID)) {
-            studentList.remove(studentID);
-            writeFile();
-            writeFileToStudentDept();
-        } else {
-            System.out.println("Student ID not found");
         }
     }
 
@@ -190,7 +138,7 @@ public class Student {
                 int departmentIDInt2 = Integer.parseInt(departmentIDStr2);
                 int[] departmentArray = { departmentIDInt1, departmentIDInt2 };
                 studentDept.put(studentIDInt, departmentArray);
-                // Close the file
+                // not closing the file here because it will close other file too when calling it
                 // bufferedReader.close();
                 reader.close();
             }
@@ -199,17 +147,84 @@ public class Student {
         }
     }
 
+    // write data back into student.txt file
+    void writeFile() {
+        File file = new File("src\\data\\student.txt");
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (int key : studentList.keySet()) {
+                writer.write(key + ", " + studentList.get(key).getStudentName() + ", "
+                        + studentList.get(key).getStudentGender() + ", " + studentList.get(key).getStudentDOB() + ", "
+                        + studentList.get(key).getStudentPhoneNo() + ", " + studentList.get(key).getStudentAddress()
+                        + ", " + studentList.get(key).getStudentYearOfStudy() + ", "
+                        + studentList.get(key).getStudentGeneration() + ", " + studentList.get(key).getStudentDegree()
+                        + ", " + studentList.get(key).getUserID()
+                        + "\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    // add new student
+    // this method is reusable with update student by ID
+    void addNewStudent(int studentID, String studentName, String studentGender, String studentDOB,
+            String studentPhoneNo,
+            String studentAddress, int studentYearOfStudy, int studentGeneration, String studentDegree, int userID) {
+        displayLine();
+        studentList.put(studentID, new Student(studentName, studentGender, studentDOB, studentPhoneNo, studentAddress,
+                studentYearOfStudy, studentGeneration, studentDegree, userID));
+        writeFile();
+        writeFileToStudentDept();
+    }
+
+    // search student by id
+    void searchStudentbyID(int studentID) {
+        displayLine();
+        if (studentList.containsKey(studentID)) {
+            System.out.println("Student ID: " + studentID);
+            System.out.println("Student Name: " + studentList.get(studentID).getStudentName());
+            System.out.println("Student gender: " + studentList.get(studentID).getStudentGender());
+            System.out.println("Student DOB: " + studentList.get(studentID).getStudentDOB());
+            System.out.println("Student phone No: " + studentList.get(studentID).getStudentPhoneNo());
+            System.out.println("Student address: " + studentList.get(studentID).getStudentAddress());
+            System.out.println("Student year of study: " + studentList.get(studentID).getStudentYearOfStudy());
+            System.out.println("Student generation: " + studentList.get(studentID).getStudentGeneration());
+            System.out.println("Student degree: " + studentList.get(studentID).getStudentDegree());
+            System.out.println("User ID: " + studentList.get(studentID).getUserID());
+        } else {
+            System.out.println("Student ID not found");
+        }
+    }
+
+    // delet student by id
+    void deleteStudentByID(int studentID) {
+        displayLine();
+        if (studentList.containsKey(studentID)) {
+            studentList.remove(studentID);
+            writeFile();
+            writeFileToStudentDept();
+        } else {
+            System.out.println("Student ID not found");
+        }
+    }
+
+    // for student enrolling program
+    // put data into stodentDept so the exercise 4 can use without error (null)
     void writeFileToStudentDept() {
         readFileStudentDept();
         File file = new File("src\\data\\studentDept.txt");
         try {
             // write file back into account.txt
             FileWriter writer = new FileWriter(file);
+            // if the student is not it the studentDept, put 0,0
             for (int key : studentList.keySet()) {
                 if (!studentDept.containsKey(key)) {
                     writer.write(key + ", " + 0 + ", " + 0 + "\n");
                 }
             }
+            // if the student is in the studentDept, put the value
             for (int key : studentList.keySet()) {
                 if (studentDept.containsKey(key)) {
                     writer.write(key + ", " + studentDept.get(key)[0] + ", " + studentDept.get(key)[1] + "\n");

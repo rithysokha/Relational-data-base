@@ -2,16 +2,9 @@
 package Exercise3;
 import java.util.Scanner;
 public class Program {
-    void displayMenu(){
-        System.out.println("A. Add new student");
-        System.out.println("B. Search student by ID");
-        System.out.println("C. Update student by ID");
-        System.out.println("D. Delete student by ID");
-        System.out.println("E. exit");
-    }
+ 
     public static void main(String[] args) {
         Student student = new Student("", "", "", "", "", 0, 0, "", 0);
-        Program program = new Program();
         student.readFile();
         boolean exit = false;
         int studentID = 0;
@@ -26,7 +19,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         while(!exit){
             student.displayLine();
-            program.displayMenu();
+            student.displayMenu();
              char choise = scanner.next().charAt(0);
             switch(choise){
                 case 'a', 'A':
@@ -34,6 +27,7 @@ public class Program {
                     System.out.println("Enter student ID: ");
                     studentID = scanner.nextInt();
                     scanner.nextLine();
+                    //check validility of student ID
                     if(!student.studentList.containsKey(studentID)){
                     System.out.println("Enter student name: ");	
                     studentName = scanner.nextLine();
@@ -77,6 +71,7 @@ public class Program {
                     System.out.println("Enter student ID: ");
                     studentID = scanner.nextInt();
                     scanner.nextLine();
+                    //check the validity of student ID
                     if(student.studentList.containsKey(studentID)){
                     System.out.println("Enter student name: ");	
                     studentName = scanner.nextLine();

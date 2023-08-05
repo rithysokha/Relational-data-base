@@ -4,18 +4,8 @@ package Exercise1;
 import java.util.Scanner;
 
 public class Program {
-    void displayMenu() {
-        System.out.println("A. Add a new faculty");
-        System.out.println("B. Search a faculty by ID");
-        System.out.println("C. Update a faculty");
-        System.out.println("D. Delete a faculty");
-        System.out.println("E. Exit");
-        System.out.println("Enter your choice: ");
-    }
-
     public static void main(String[] args) {
         Faculty faculty = new Faculty("", "", 0);
-        Program program = new Program();
         faculty.readFile();
         boolean exit = false;
         int facultyID = 0;
@@ -25,7 +15,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         while (!exit) {
             faculty.displayLine();
-            program.displayMenu();
+            faculty.displayMenu();
             char choice = scanner.next().charAt(0);
             switch (choice) {
                 case 'a', 'A':

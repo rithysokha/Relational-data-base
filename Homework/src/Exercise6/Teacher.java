@@ -52,10 +52,9 @@ public class Teacher {
     HashMap<Integer, int[]> teacherCourseList = new HashMap<>();
     HashMap<Integer, String> courseList = new HashMap<>();
 
-    // read file and input data to hashmap
+    // read teacher file
     void readFile() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacher.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -68,9 +67,11 @@ public class Teacher {
                 String teacherPhoneNoStr = keyValue[4];
                 String teacherAddressStr = keyValue[5];
                 String userIDString = keyValue[6];
+
                 // convert data type
                 Integer teacherIDInt = Integer.parseInt(teacherIDStr);
                 int userIDInt = Integer.parseInt(userIDString);
+
                 // Add the key-value pair to the HashMap.
                 teacherList.put(teacherIDInt, new Teacher(teacherNameStr, teacherGenderStr, teacherDOBStr,
                         teacherPhoneNoStr, teacherAddressStr, userIDInt));
@@ -83,10 +84,9 @@ public class Teacher {
             System.out.println(e);
         }
     }
-
+    //read course file
     void readFileCourse() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\course.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -109,7 +109,6 @@ public class Teacher {
       // read file teacherCourse.txt and put into teacherCourseList
       void readFileTeacherCourse() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacherCourse.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -140,7 +139,7 @@ public class Teacher {
                 courseArray[4] = courseIDInt5;
                 teacherCourseList.put(teacherIDInteger, courseArray);
             }
-            // Close the file
+            // if we close this it will close file in other method too when we call it
             // bufferedReader.close();
             reader.close();
         } catch (Exception e) {
@@ -152,7 +151,6 @@ public class Teacher {
     void writeFile() {
         File file = new File("src\\data\\teacher.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : teacherList.keySet()) {
                 writer.write(key + ", " + teacherList.get(key).getTeacherName() + ", "
@@ -188,7 +186,7 @@ public class Teacher {
         writeFile();
         writeFileToTeacherCourse();
     }
-
+    //search teacher by ID
     void searchTeacherByID(int teacherID) {
         if (teacherList.containsKey(teacherID)) {
             System.out.println("Teacher ID: " + teacherID);
@@ -202,7 +200,7 @@ public class Teacher {
             System.out.println("Teacher ID does not exist!");
         }
     }
-
+    // delete teacher by id
     void deleteTeacherByID(int teacherID) {
         if (teacherList.containsKey(teacherID)) {
             teacherList.remove(teacherID);
@@ -211,7 +209,7 @@ public class Teacher {
         }
         writeFile();
     }
-
+    //display all course tought by a teacher
     void displayAllCourseToughByATeacher(int teacherID) {
         readFileCourse();
         System.out.println("Teacher ID: " + teacherID);
@@ -225,17 +223,19 @@ public class Teacher {
     }
 
     // for teacher course assigning progam
+    //write file for teacherCourse.txt
     void writeFileToTeacherCourse() {
         readFileTeacherCourse();
         File file = new File("src\\data\\teacherCourse.txt");
         try {
             FileWriter writer = new FileWriter(file);
-            
+            //if a new tacher is added then put teacherID and 5 zeroes (can assign 5 course to each teacher)
             for (int key : teacherList.keySet()) {
                 if(!teacherCourseList.containsKey(key)){
                     writer.write(key + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + ", " + 0 + "\n");
                 }
             }
+            //if teacher that already added, just keep the old data
             for(int key: teacherList.keySet()){
                 if(teacherCourseList.containsKey(key)){
                     writer.write(key + ", " + teacherCourseList.get(key)[0] + ", " + teacherCourseList.get(key)[1] + ", " + teacherCourseList.get(key)[2] + ", " + teacherCourseList.get(key)[3] + ", " + teacherCourseList.get(key)[4] + "\n");

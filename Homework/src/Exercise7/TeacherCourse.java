@@ -34,10 +34,9 @@ public class TeacherCourse {
         System.out.println("D. Exit");
         displayLine();
     }
-
+    //read file teacher 
     void readFileTeacher() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacher.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -57,10 +56,9 @@ public class TeacherCourse {
             System.out.println(e);
         }
     }
-
+    // read file course
     void readFileCourse() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\course.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -84,7 +82,6 @@ public class TeacherCourse {
     // read file teacherCourse.txt and put into teacherCourseList
     void readFileTeacherCourse() {
         try {
-            // Creates a reader that is linked with the myFile.txt
             FileReader reader = new FileReader("src\\data\\teacherCourse.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
@@ -127,7 +124,6 @@ public class TeacherCourse {
     void writeFile() {
         File file = new File("src\\data\\teacherCourse.txt");
         try {
-            // write file back into account.txt
             FileWriter writer = new FileWriter(file);
             for (int key : teacherCourseList.keySet()) {
                 writer.write(key + ", " + teacherCourseList.get(key)[0] + ", " + teacherCourseList.get(key)[1] + ", "
@@ -141,10 +137,13 @@ public class TeacherCourse {
     }
 
     void assignCourseToATeacher(int teacherID, int courseID) {
+        //check the validity of the course
         if (courseList.containsKey(courseID)) {
+            //check if the teacher alrady assgin with the given course id
             if(teacherCourseList.get(teacherID)[0] != courseID && teacherCourseList.get(teacherID)[1] != courseID
             && teacherCourseList.get(teacherID)[2] != courseID && teacherCourseList.get(teacherID)[3] != courseID
             && teacherCourseList.get(teacherID)[4] != courseID){
+                //check if the teacher already has 5 courses
             if (teacherCourseList.get(teacherID)[0] == 0) {
                 teacherCourseList.get(teacherID)[0] = courseID;
             } else if (teacherCourseList.get(teacherID)[1] == 0) {
@@ -166,8 +165,9 @@ public class TeacherCourse {
             System.out.println("Course ID not found.");
         }
     }
-
+    //remove course from teacher
     void removeCourseFromATeacher(int teacherID, int courseID) {
+        //replace the course id with 0
         if (teacherCourseList.get(teacherID)[0] == courseID) {
             teacherCourseList.get(teacherID)[0] = 0;
         } else if (teacherCourseList.get(teacherID)[1] == courseID) {
@@ -183,7 +183,7 @@ public class TeacherCourse {
         }
         writeFile();
     }
-
+    //display all course tought by a teacher
     void displayAllCourseToughByATeacher(int teacherID) {
         readFileCourse();
         System.out.println("Teacher ID: " + teacherID);
