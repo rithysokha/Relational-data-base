@@ -80,6 +80,7 @@ public class Login {
     }
     //login
     void logIn(int userID, int password){
+        System.out.println("==================================================");
         if (accountList.containsKey(userID)) {
             if (accountList.get(userID) == password) {
                 System.out.println("Login successful");

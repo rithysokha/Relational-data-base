@@ -7,6 +7,7 @@ public class Program {
         Account account = new Account();
         account.readFileStudent();
         account.readFileTeacher();
+        account.readFileAccount();
         Scanner scanner = new Scanner(System.in);
         int userID;
         int password;

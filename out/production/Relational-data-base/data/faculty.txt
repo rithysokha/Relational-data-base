@@ -1,0 +1,2 @@
+1, Faculty of Engineering, Sovila, 1
+2, Faculty of Science, idk, 1

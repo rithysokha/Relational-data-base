@@ -67,6 +67,31 @@ public class Account {
             System.out.println(e);
         }
     }
+    // read file and input data to hashmap
+    void readFileAccount() {
+        try {
+            FileReader reader = new FileReader("src\\data\\account.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] keyValue = line.split(", ");
+                String userIDStr = keyValue[0];
+                String passwordStr = keyValue[1];
+
+                // convert data type
+                Integer userIDInt = Integer.parseInt(userIDStr);
+                Integer passwordInt = Integer.parseInt(passwordStr);
+                // Add the key-value pair to the HashMap.
+                accountList.put(userIDInt, passwordInt);
+                
+            }
+            // Close the file
+            bufferedReader.close();
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
         // write data back into txt file
     void writeFile() {
         File file = new File("src\\data\\account.txt");
@@ -80,6 +105,7 @@ public class Account {
             System.out.println(e);
         }
     }
+
     //create account
     void createAccount(int userID, int password){
         displayLine();
